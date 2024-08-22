@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'products-app';
+  title: string = 'Angular app'
+  enabled: boolean = true;
+
+  public setEnabled (): boolean{
+    return this.enabled = !this.enabled;
+  }
 }
