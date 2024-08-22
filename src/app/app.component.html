@@ -1,9 +1,12 @@
 
 <button type="button" (click)="setEnabled()">Toggle enabled </button>
+
+<products-form></products-form>
+
 @if (enabled) {
 <div>
   <h2> {{title}} </h2>
-  <app-product></app-product>
+  <products-product></products-product>
 </div>
 } @else {
   <div>Not available</div>

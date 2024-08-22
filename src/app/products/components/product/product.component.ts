@@ -1,9 +1,9 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ProductService } from '../services/product.service';
-import { Product } from '../models/product';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/product';
 
 @Component({
-  selector: 'app-product',
+  selector: 'products-product',
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
