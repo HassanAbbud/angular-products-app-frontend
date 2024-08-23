@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductComponent } from './products/components/product/product.component';
+import { ProductListComponent } from './products/components/product-list/product-list.component';
 import { FormComponent } from './products/components/form/form.component';
 import { ProductsModule } from './products/products.module';
 

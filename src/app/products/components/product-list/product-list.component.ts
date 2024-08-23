@@ -1,13 +1,13 @@
-import { Product } from '../../interfaces/product';
 import { Component, inject, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
+import { Product } from '../../interfaces/product';
 
 @Component({
-  selector: 'products-product',
-  templateUrl: './product.component.html',
-  styleUrl: './product.component.css'
+  selector: 'products-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrl: './product-list.component.css'
 })
-export class ProductComponent implements OnInit {
+export class ProductListComponent implements OnInit {
 
   public products: Product[] = [];
 
@@ -27,13 +27,27 @@ export class ProductComponent implements OnInit {
   }
 
   addProduct(product: Product) : void {
+    if(product.id > 0) {
+      this.products.map(currentProduct => {
+        if(currentProduct.id == product.id){
+          return {...product}
+        }
+        return currentProduct
+      })
+    } else {
     product.id = new Date().getTime();
     this.products.push(product);
     // this.products = [...this.products, {...product}]
+    }
   }
 
   public onEditProduct(productRow: Product){
     this.selectedProduct = productRow;
   }
+
+  public onDelete(id: number){
+    this.products = this.products.filter(currentProducts => currentProducts.id != id)
+  }
+
 
 }
