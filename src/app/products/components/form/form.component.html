@@ -1,16 +1,62 @@
-<form (ngSubmit)="onSubmit()">
+<!-- <form (ngSubmit)="onSubmit()" [formGroup]="myForm"> -->
+<form (ngSubmit)="onSubmit()" #productForm="ngForm">
   <div>
-    <input class="form-control" type="text" placeholder="Name" name="name" [(ngModel)]="product.name">
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Name"
+      name="name"
+      [(ngModel)]="product.name"
+      #name="ngModel"
+      required
+    />
+    <div class="form-text text-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+      Name is required
+    </div>
   </div>
-  <div>
-    <input class="form-control" type="text" placeholder="Description" name="description" [(ngModel)]="product.description">
-  </div>
-  <div>
-    <input class="form-control" type="number" placeholder="Price" name="price" [(ngModel)]="product.price">
-  </div>
-  <div>
-    <button class="btn btn-primary" type="submit">{{product.id > 0 ? 'Update' : 'Create'}}</button>
-    <button class="btn btn-success" type="button" (click)="cleanProduct()">Clean form</button>
 
+  <div>
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Description"
+      name="description"
+      [(ngModel)]="product.description"
+      #description="ngModel"
+      required
+    />
+    <div class="form-text text-danger" *ngIf="description.invalid && (description.dirty || description.touched)">
+      Description is required
+    </div>
+  </div>
+
+  <div>
+    <input
+      class="form-control"
+      type="number"
+      placeholder="Price"
+      name="price"
+      [(ngModel)]="product.price"
+      #price="ngModel"
+      required
+    />
+      <div class="form-text text-danger" *ngIf="price.invalid && (price.dirty || price.touched)">
+        Price is required
+      </div>
+  </div>
+
+  <div>
+    <button
+    class="btn btn-primary my-2" type="submit"
+    [disabled]="!productForm.valid">
+      {{ product.id > 0 ? "Update" : "Create" }}
+    </button>
+    <button
+      class="btn btn-success mx-2 my-2"
+      type="button"
+      (click)="cleanProduct()"
+    >
+      Clean form
+    </button>
   </div>
 </form>

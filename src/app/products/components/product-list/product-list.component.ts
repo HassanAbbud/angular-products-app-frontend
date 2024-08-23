@@ -8,6 +8,7 @@ import { Product } from '../../interfaces/product';
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent implements OnInit {
+  private productService = inject(ProductService);
 
   public products: Product[] = [];
 
@@ -18,7 +19,6 @@ export class ProductListComponent implements OnInit {
     price: 0
   }
 
-  private productService = inject(ProductService);
 
   ngOnInit(): void {
     this.productService.findAll().subscribe(products => {
