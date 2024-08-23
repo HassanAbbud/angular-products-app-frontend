@@ -1,33 +1,43 @@
-<h2>Products List</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Products List</h2>
 
-<products-form (onNewProduct)="addProduct($event)" [product]="selectedProduct"></products-form>
+      <products-form (onNewProduct)="addProduct($event)" [product]="selectedProduct"></products-form>
 
-@if (products.length > 0) {
-  <table class="table">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Update</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
+    </div>
+    <div class="col">
 
-  <tbody>
-    @for (product of products; track $index) {
-      <tr>
-        <td> {{product.id}} </td>
-        <td> {{product.name}} </td>
-        <td> {{product.description}} </td>
-        <td> {{product.price}} </td>
-        <td> <button type="button" class="btn btn-primary" (click)="onEditProduct(product)">Update</button></td>
-        <td> <button type="button" class="btn btn-danger" (click)="onDelete(product.id)">Delete</button></td>
-      </tr>
-    }
-  </tbody>
-  </table>
-} @else {
-  <div>No products found in service!</div>
-}
+      @if (products.length > 0) {
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (product of products; track $index) {
+          <tr>
+            <td> {{product.id}} </td>
+            <td> {{product.name}} </td>
+            <td> {{product.description}} </td>
+            <td> {{product.price}} </td>
+            <td> <button type="button" class="btn btn-primary" (click)="onEditProduct(product)">Update</button></td>
+            <td> <button type="button" class="btn btn-danger" (click)="onDelete(product.id)">Delete</button></td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      } @else {
+      <div class="alert alert-info">No products found in service!</div>
+      }
+    </div>
+
+  </div>
+</div>
