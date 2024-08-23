@@ -7,6 +7,9 @@ import { Product } from '../../interfaces/product';
   styleUrl: './form.component.css'
 })
 export class FormComponent {
+cleanForm() {
+throw new Error('Method not implemented.');
+}
 
   @Input()
   product: Product = {
@@ -20,8 +23,6 @@ export class FormComponent {
   public onNewProduct: EventEmitter<Product> = new EventEmitter();;
 
   public onSubmit() {
-    console.log(this.product)
-
     this.onNewProduct.emit(this.product);
     this.cleanProduct();
   }

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../interfaces/product';
 
@@ -28,26 +28,30 @@ export class ProductListComponent implements OnInit {
 
   addProduct(product: Product) : void {
     if(product.id > 0) {
-      this.products.map(currentProduct => {
+      this.products = this.products.map(currentProduct => {
         if(currentProduct.id == product.id){
           return {...product}
         }
         return currentProduct
       })
     } else {
-    product.id = new Date().getTime();
-    this.products.push(product);
-    // this.products = [...this.products, {...product}]
+    // product.id = new Date().getTime();
+    // this.products.push(product);
+    this.products = [... this.products, { ...product, id: new Date().getTime() }];
     }
+    // this.selectedProduct = {
+    //   id: 0,
+    //   name: '',
+    //   description: '',
+    //   price: 0
+    // }
   }
 
   public onEditProduct(productRow: Product){
-    this.selectedProduct = productRow;
+    this.selectedProduct = {...productRow};
   }
 
   public onDelete(id: number){
     this.products = this.products.filter(currentProducts => currentProducts.id != id)
   }
-
-
 }

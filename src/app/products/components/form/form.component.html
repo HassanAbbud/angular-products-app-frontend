@@ -9,7 +9,8 @@
     <input class="form-control" type="number" placeholder="Price" name="price" [(ngModel)]="product.price">
   </div>
   <div>
-    <button class="btn btn-primary">{{product.id > 0 ? 'Edit' : 'Create'}}</button>
+    <button class="btn btn-primary" type="submit">{{product.id > 0 ? 'Update' : 'Create'}}</button>
+    <button class="btn btn-success" type="button" (click)="cleanProduct()">Clean form</button>
 
   </div>
 </form>
