@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { Product } from '../../models/product';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'products-form',
@@ -8,11 +8,12 @@ import { Product } from '../../models/product';
 })
 export class FormComponent {
 
+  @Input()
   product: Product = {
-    id: 1,
-    name: "Keyboard",
-    description: 'Mechanical keyboard',
-    price: 25
+    id: 0,
+    name: '',
+    description: '',
+    price: 0
   }
 
   @Output()

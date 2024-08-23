@@ -1,14 +1,16 @@
 <h2>Products List</h2>
 
-<products-form (onNewProduct)="addProduct($event)"></products-form>
+<products-form (onNewProduct)="addProduct($event)" [product]="selectedProduct"></products-form>
 
 @if (products.length > 0) {
+  <table class="table">
   <thead>
     <tr>
       <th>id</th>
       <th>name</th>
       <th>description</th>
       <th>price</th>
+      <th>update</th>
     </tr>
   </thead>
 
@@ -19,10 +21,11 @@
         <td> {{product.name}} </td>
         <td> {{product.description}} </td>
         <td> {{product.price}} </td>
+        <td> <button type="button" class="btn btn-primary" (click)="onEditProduct(product)">Update</button></td>
       </tr>
     }
   </tbody>
-
+  </table>
 } @else {
   <div>No products found in service!</div>
 }

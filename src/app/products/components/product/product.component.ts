@@ -1,6 +1,6 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Product } from '../../interfaces/product';
+import { Component, inject, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { Product } from '../../models/product';
 
 @Component({
   selector: 'products-product',
@@ -10,6 +10,13 @@ import { Product } from '../../models/product';
 export class ProductComponent implements OnInit {
 
   public products: Product[] = [];
+
+  public selectedProduct: Product = {
+    id: 0,
+    name: '',
+    description: '',
+    price: 0
+  }
 
   private productService = inject(ProductService);
 
@@ -23,6 +30,10 @@ export class ProductComponent implements OnInit {
     product.id = new Date().getTime();
     this.products.push(product);
     // this.products = [...this.products, {...product}]
+  }
+
+  public onEditProduct(productRow: Product){
+    this.selectedProduct = productRow;
   }
 
 }
