@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Product } from '../../models/product';
 
 @Component({
@@ -15,4 +15,22 @@ export class FormComponent {
     price: 25
   }
 
+  @Output()
+  public onNewProduct: EventEmitter<Product> = new EventEmitter();;
+
+  public onSubmit() {
+    console.log(this.product)
+
+    this.onNewProduct.emit(this.product);
+    this.cleanProduct();
+  }
+
+  public cleanProduct(): void {
+    this.product = {
+      id: 0,
+      name: "",
+      description: '',
+      price: 0
+    }
+  }
 }

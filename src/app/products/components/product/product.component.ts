@@ -19,4 +19,10 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  addProduct(product: Product) : void {
+    product.id = new Date().getTime();
+    this.products.push(product);
+    // this.products = [...this.products, {...product}]
+  }
+
 }

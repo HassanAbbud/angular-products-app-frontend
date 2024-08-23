@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Product } from './products/models/product';
 
 @Component({
   selector: 'app-root',
@@ -6,8 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
   title: string = 'Angular app'
   enabled: boolean = true;
+
+  products: Product[] = [];
 
   public setEnabled (): boolean{
     return this.enabled = !this.enabled;
