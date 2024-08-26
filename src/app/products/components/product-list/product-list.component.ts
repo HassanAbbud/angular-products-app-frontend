@@ -28,16 +28,22 @@ export class ProductListComponent implements OnInit {
 
   addProduct(product: Product) : void {
     if(product.id > 0) {
-      this.products = this.products.map(currentProduct => {
-        if(currentProduct.id == product.id){
-          return {...product}
-        }
-        return currentProduct
+      this.productService.update(product).subscribe(updatedProduct => {
+        this.products = this.products.map(currentProduct => {
+          //Update existing product
+          if(currentProduct.id == product.id){
+            return {...updatedProduct}
+          }
+          return currentProduct
+        })
       })
     } else {
     // product.id = new Date().getTime();
     // this.products.push(product);
-    this.products = [... this.products, { ...product, id: new Date().getTime() }];
+    //Create new product
+      this.productService.create(product).subscribe(newProduct =>{
+        this.products = [... this.products, { ...newProduct}];
+      })
     }
     // this.selectedProduct = {
     //   id: 0,
@@ -52,6 +58,8 @@ export class ProductListComponent implements OnInit {
   }
 
   public onDelete(id: number){
-    this.products = this.products.filter(currentProducts => currentProducts.id != id)
+    this.productService.delete(id).subscribe(prods => {
+      this.products = this.products.filter(currentProducts => currentProducts.id != id)
+    })
   }
 }

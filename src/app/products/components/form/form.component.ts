@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Product } from '../../interfaces/product';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'products-form',
@@ -33,9 +33,13 @@ throw new Error('Method not implemented.');
   public onNewProduct: EventEmitter<Product> = new EventEmitter();;
 
 
-  public onSubmit() {
-    this.onNewProduct.emit(this.product);
-    this.cleanProduct();
+  public onSubmit(productForm: NgForm) {
+    if( productForm.valid ){
+      this.onNewProduct.emit(this.product);
+      this.cleanProduct();
+    }
+    productForm.reset();
+    productForm.resetForm();
   }
 
   public cleanProduct(): void {
