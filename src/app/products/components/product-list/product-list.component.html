@@ -1,12 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2>Products List</h2>
+      <h2>Products Form</h2>
 
       <products-form (onNewProduct)="addProduct($event)" [product]="selectedProduct"></products-form>
 
     </div>
     <div class="col">
+      <h2>Products List</h2>
+
 
       @if (products.length > 0) {
       <table class="table table-hover table-striped">
